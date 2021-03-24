@@ -4,7 +4,7 @@ def bin_search(data, target):
     last = len(data) - 1
     
     # Find the rough middle of the array.
-    while first <= last:
+    while first != last:
         middle = (first + last) // 2
         
         # Check if the initial array placement is the value.
