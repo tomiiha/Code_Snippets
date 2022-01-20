@@ -1,25 +1,38 @@
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn import metrics
 
-# Instanteate model class.
-logreg = LogisticRegression()
+'''
+Create df, with 'A' column as category, the rest as random ints.
+Model will be terrible - this is a proof of concept on code.
+'''
+def rand_df():
+  import pandas as pd
+  import numpy as np
+  df = pd.DataFrame(np.random.randint(0,4,size=(500, 1)), columns=list('A'))
+  df = df.join(pd.DataFrame(np.random.randint(0,50,size=(500, 3)), columns=list('BCD')))
+  return df
 
-# Capture columns (X) ...
-feature_cols = ['na','ca']
-X = glass[feature_cols]
+def log_reg(df = rand_df()):
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.model_selection import train_test_split
+    from sklearn import metrics
 
-# Used to predict value (y).
-y = glass.household
+    # Instanteate model class.
+    logreg = LogisticRegression()
 
-# Train/Test Split.
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=99)
+    # Capture columns (X) ...
+    feature_cols = ['B','C','D']
+    X = df[feature_cols]
 
-# Fit the Model.
-logreg.fit(X,y)
+    # Used to predict value (y).
+    y = df.A
 
-# Predict results.
-y_pred_class = logreg.predict(X_test)
+    # Train/Test Split.
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=99)
 
-# Show relative accuracy of the model.
-print((metrics.accuracy_score(y_test, y_pred_class)))
+    # Fit the Model.
+    logreg.fit(X,y)
+
+    # Predict results.
+    y_pred_class = logreg.predict(X_test)
+
+    # Show relative accuracy of the model.
+    print((metrics.accuracy_score(y_test, y_pred_class)))
