@@ -15,7 +15,7 @@ def best_knn(samples = 500, feats = 5, classes = 2):
                              n_classes=classes,
                              random_state=rand_state)
         
-    # Create a for loop to calculate the TRAINING ERROR and TESTING ERROR for K=1 through the square root of df.
+    # Create a for loop to calculate the training/testing error for K=1 through the square root of dataset.
     n_sqr = int(np.sqrt(samples))
     k_range = list(range(1, n_sqr + 1))
     training_error = []
