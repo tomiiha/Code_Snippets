@@ -6,17 +6,20 @@ def log_reg(samples = 500, feats = 5, classes = 2):
     import pandas as pd
     import numpy as np
     
+    # Random state for reproduction.
+    rand_state = 32
+    
     # Create classification dummy dataset.
     X, y = make_classification(n_samples=samples,
                                n_features=feats,
                                n_classes=classes,
-                               random_state = 32)
+                               random_state=rand_state)
 
     # Instanteate model class.
     logreg = LogisticRegression()
 
     # Train/Test Split.
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=32)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=rand_state)
 
     # Fit the Model.
     logreg.fit(X,y)
