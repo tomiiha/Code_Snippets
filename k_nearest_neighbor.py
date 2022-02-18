@@ -10,7 +10,7 @@ def best_knn(samples = 500, feats = 5, classes = 2):
     X, y = make_classification(n_samples=samples, 
                              n_features=feats,
                              n_classes=classes,
-                             random_state = 21)
+                             random_state = 15)
         
     # Create a for loop to calculate the TRAINING ERROR and TESTING ERROR for K=1 through the square root of df.
     n_sqr = int(np.sqrt(samples))
@@ -21,7 +21,7 @@ def best_knn(samples = 500, feats = 5, classes = 2):
     # Find test accuracy for all values of K between 1 and square root of n (inclusive).
     for k in k_range:
         knn = KNeighborsClassifier(n_neighbors=k)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=99)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=15)
         knn.fit(X_train, y_train)
 
         # Calculate training error (error = 1 - accuracy).
