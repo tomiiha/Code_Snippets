@@ -10,13 +10,13 @@ def log_reg(samples = 500, feats = 5, classes = 2):
     X, y = make_classification(n_samples=samples,
                                n_features=feats,
                                n_classes=classes,
-                               random_state = 21)
+                               random_state = 32)
 
     # Instanteate model class.
     logreg = LogisticRegression()
 
     # Train/Test Split.
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=21)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=32)
 
     # Fit the Model.
     logreg.fit(X,y)
