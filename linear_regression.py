@@ -2,10 +2,13 @@
 def create_df(feats = 3, samples = 500):
     import pandas as pd
     from sklearn.datasets import make_regression
+    
+    # Random state for reproduction.
+    rand_state = 21
 
     df = make_regression(n_samples=samples, 
                          n_features=feats,
-                         random_state = 21)
+                         random_state=rand_state)
     df = pd.DataFrame(df[0], columns=[str(x) for x in range(0,feats)])
     return df
   
@@ -24,7 +27,7 @@ def create_df(feats = 3, samples = 500):
     y = df['0']
     
     # Set up train/test split.
-    X_train, X_test, y_train, y_test = train_test_split(X, y,random_state=21)
+    X_train, X_test, y_train, y_test = train_test_split(X, y,random_state=rand_state)
     
     # Fit the model.
     lr.fit(X_train, y_train)
